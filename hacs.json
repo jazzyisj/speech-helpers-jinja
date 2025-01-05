@@ -1,6 +1,6 @@
 {
-    "name": "Jinja Speech Helpers",
-    "filename": "speech_helpers.jinja",
-    "homeassistant": "2024.1.0",
-    "render_readme": true
+  "name": "Jinja Speech Helpers",
+  "filename": "speech_helpers.jinja",
+  "homeassistant": "2024.1.0",
+  "render_readme": true
 }
