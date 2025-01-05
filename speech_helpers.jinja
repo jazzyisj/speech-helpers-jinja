@@ -18,7 +18,7 @@
 {%- endmacro -%}
 
 {%- macro array_to_clist(arr, title) -%}
-{%- from 'speech.jinja' import plural_word %}
+{%- from 'speech_helpers.jinja' import plural_word %}
 {%- set clist = ', and ' if arr | count > 2 else ' and ' -%}
 {%- set text = arr | join(', ') %}
 {%- if title %}{{ clist.join((text | title).rsplit(', ', 1)) -}}
@@ -27,8 +27,8 @@
 {%- endmacro -%}
 
 {%- macro clist_suffix(arr, title, suffix, word) -%}
-{%- from 'speech.jinja' import array_to_clist %}
-{%- from 'speech.jinja' import plural_word %}
+{%- from 'speech_helpers.jinja' import array_to_clist %}
+{%- from 'speech_helpers.jinja' import plural_word %}
 {{- array_to_clist(arr, title) }}
 {%- if suffix or word != '' %} {{ plural_word(word, arr | count, suffix) }}
 {%- endif %}
@@ -47,7 +47,7 @@
 
 {%- macro number_words(number) -%}
 {%- if is_number(number) %}
-  {%- from 'speech.jinja' import number_words %}
+  {%- from 'speech_helpers.jinja' import number_words %}
   {%- set number = number | int %}
   {%- set units = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven ', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'] %}
   {%- set tens = ['', '', 'twenty ', 'thirty ', 'forty ', 'fifty ', 'sixty ', 'seventy ', 'eighty ', 'ninety '] %}
@@ -56,11 +56,11 @@
     {%- if number < 0 -%} negative {% endif %}
     {%- if number < 20 -%} {{ units[number] }}
     {%- elif number < 100 -%} {{ tens[number // 10] ~ units[number % 10] }}
-    {%- elif number < 1000 -%} {{ number_words(number // 100) ~ ' hundred ' ~ iif(number % 100 > 0, 'and ' ~ number_words(number % 100), '') }}
-    {%- elif number < 1000000 -%} {{ number_words(number // 1000) ~ ' thousand ' ~ iif(number % 1000 > 0, 'and ' ~ number_words(number % 1000), '') }}
-    {%- elif number < 1000000000 -%} {{ number_words(number // 1000000) ~ ' million ' ~ iif(number % 1000000 > 0, 'and ' ~ number_words(number % 1000000), '') }}
-    {%- elif number < 1000000000000 -%} {{ number_words(number // 1000000000) ~ ' billion ' ~ iif(number % 1000000000 > 0, 'and ' ~ number_words(number % 1000000000), '') }}
-    {%- else -%} {{ number_words(number // 1000000000000) ~ ' trillion ' ~ iif(number % 1000000000000 > 0, 'and ' ~ number_words(number % 1000000000000), '') }}
+    {%- elif number < 1000 -%} {{ number_words(number // 100) ~ ' hundred ' ~ iif(number % 100 > 0, number_words(number % 100), '') }}
+    {%- elif number < 1000000 -%} {{ number_words(number // 1000) ~ ' thousand ' ~ iif(number % 1000 > 0, number_words(number % 1000), '') }}
+    {%- elif number < 1000000000 -%} {{ number_words(number // 1000000) ~ ' million ' ~ iif(number % 1000000 > 0, number_words(number % 1000000), '') }}
+    {%- elif number < 1000000000000 -%} {{ number_words(number // 1000000000) ~ ' billion ' ~ iif(number % 1000000000 > 0, number_words(number % 1000000000), '') }}
+    {%- else -%} {{ number_words(number // 1000000000000) ~ ' trillion ' ~ iif(number % 1000000000000 > 0, number_words(number % 1000000000000), '') }}
     {%- endif %}
   {%- endif %}
 {%- endif -%}
@@ -73,6 +73,6 @@
 {%- endmacro -%}
 
 {%- macro plural_qty(word, qty, suffix) -%}
-{%- from 'speech.jinja' import plural_word -%}
+{%- from 'speech_helpers.jinja' import plural_word -%}
 {{ qty }} {{ plural_word(word, qty, suffix) }}
 {%- endmacro -%}
