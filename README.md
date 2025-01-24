@@ -1,6 +1,6 @@
 # Jinja Speech Helper Templates
 Speech helper template macros for Home Assistant
-## plural(word, qty, show_qty, suffix)
+## plural(word, qty, show_qty)
 Pluralize a word when required.
 - **word** - word to pluralize *[string]*
 - **qty** - numerical quantity *[number]*
