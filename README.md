@@ -49,7 +49,7 @@ There is an eighty five kilometer difference in the commute.
 
 That was an honourable thing to do.
 ## number_words(number)
-Convert a numerical value to it's text equivelent.
+Convert a numerical value to it's text equivelent.  Accepts numbers with comma separators and decimals.
 - **number** - a numberical value *[integer]*
 ### Usage
     {% from 'speech_helpers.jinja' import number_words %}
