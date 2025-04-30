@@ -54,11 +54,13 @@ Convert a numerical value to it's ordinal value.
 ### Usage
     {% from 'speech_helpers.jinja' import ordinal_number %}
     {{ ordinal_number(1) }}
-    {{ ordinal_number(1) }}
-    {{ ordinal_number(1) }}
+    {{ ordinal_number(2) }}
+    {{ ordinal_number(3) }}
 #### Output
 1st
+
 2nd
+
 3rd
 ## number_words(number)
 Convert a numerical value to it's text equivelent.  Accepts numbers with comma separators and decimals.
