@@ -1,4 +1,4 @@
-{%- macro plural(word, qty, show_qty) -%}
+{%- macro plural(word, qty, show_qty=true) -%}
 {%- if is_number(qty) %}
 {%- if show_qty -%} {{ qty }} {% endif -%}
 {{- iif(word != '', word, '') ~ iif(word != '', iif(qty | abs == 1, '', iif(word[-1] == 's', 'es', 's')),'') }}
@@ -11,7 +11,7 @@
 {%- endif -%}
 {%- endmacro -%}
 
-{%- macro array_to_clist(arr, title) -%}
+{%- macro array_to_clist(arr, title=false) -%}
 {%- from 'speech_helpers.jinja' import plural %}
 {%- set clist = ', and ' if arr | count > 2 else ' and ' %}
 {%- set text = arr | join(', ') %}
@@ -29,6 +29,12 @@
 {%- else -%} {{ iif(word[0] in ['a', 'e', 'i' , 'o', 'u'], 'an ', 'a ') }}
 {%- endif %}
 {{- word -}}
+{%- endmacro -%}
+
+{%- macro ordinal_number(number) %}
+{%- if is_number(number) %}
+{{- "%d%s"% (number|int, "tsnrhtdd"[(number|int//10%10!=1) * (number|int%10<4) * number|int%10 :: 4]) }}
+{%- endif %}
 {%- endmacro -%}
 
 {%- macro number_words(number) -%}

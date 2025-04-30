@@ -48,9 +48,21 @@ There is a fifty percent chance of rain today.
 There is an eighty five kilometer difference in the commute.
 
 That was an honourable thing to do.
+## ordinal_number(number)
+Convert a numerical value to it's ordinal value.
+- **number** - a numberical value *[integer]*
+### Usage
+    {% from 'speech_helpers.jinja' import ordinal_number %}
+    {{ ordinal_number(1) }}
+    {{ ordinal_number(1) }}
+    {{ ordinal_number(1) }}
+#### Output
+1st
+2nd
+3rd
 ## number_words(number)
 Convert a numerical value to it's text equivelent.  Accepts numbers with comma separators and decimals.
-- **number** - a numberical value *[integer]*
+- **number** - a numberical value *[float]*
 ### Usage
     {% from 'speech_helpers.jinja' import number_words %}
     {{ number_words(123456789) }}
